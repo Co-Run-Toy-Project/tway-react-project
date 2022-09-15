@@ -14,7 +14,9 @@ const theme = {
     beige: "#F4ECCF",
     dimgray: "#7D756D",
     softgreen: "#E4EEC0",
-    softblue: "#D6E4F2"
+    softblue: "#D6E4F2",
+    lightgray: "#F3F3F3",
+    gray: "#808080",
 };
 
 export default theme;
