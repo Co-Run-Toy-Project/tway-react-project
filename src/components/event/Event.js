@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import { useState, useRef } from "react";
+import { AdContent } from "./AdContent";
+import { dummyData } from "../../data/Event_dummyData";
 import { createGlobalStyle } from "styled-components";
 
 // import NanumGothic from "../../assets/fonts/NanumGothic.woff";
@@ -57,7 +60,7 @@ export const Header = styled.div`
     }
 
     > .title {
-        position : fixed;
+        position : absolute;
         left : 10px;
         right : 10px;
         font-size : 30px;
@@ -82,7 +85,7 @@ export const Carousel = styled.div`
 
 
     > .slide {
-        height : 400px;
+        height : 300px;
         width : 100%;
         
 
@@ -116,7 +119,25 @@ export const Carousel = styled.div`
             width : 1050px;
             height : 100%;
 
-            background-color : #f3f3f3;
+            overflow : hidden;
+
+            /* background-color : red; */
+            /* border : 3px solid red; */
+
+            > .slider {
+                width : 500%;
+                height : 100%;
+
+                display : flex;
+
+                /* border : 3px solid green; */
+
+                transform : translateX(0px);
+                /* transform : translateX(-1050px); */
+                transition : 1s ease;
+
+            }
+
         }
     }
 
@@ -137,9 +158,11 @@ export const Carousel = styled.div`
             height : 13px;
 
             margin-left : 10px;
+            transition : .3s ease;
             
             &:hover {
                 cursor: pointer;
+                background-color : #D22C26;
             }
         }
 
@@ -160,7 +183,36 @@ export const Carousel = styled.div`
 
 
 
+
 export const Event = () => {
+    
+    const [data, setData] = useState(dummyData);
+    const [startX, setStartX] = useState(0);
+    
+
+    const slideRef = useRef();
+
+
+    const handleClick = (direction) => {
+        // console.log(direction)
+
+        // console.log(slideRef.current.style.transform)
+        if (direction === 'left'){
+            slideRef.current.style.transform = `translateX(${startX + 525}px)`;
+            setStartX(startX + 525);
+        }
+        else if (direction === 'right'){
+            slideRef.current.style.transform = `translateX(${startX - 525}px)`;
+            setStartX(startX - 525);
+        }
+
+    }
+
+
+
+
+
+
 
     return (
         <EventArea>
@@ -170,9 +222,13 @@ export const Event = () => {
             </Header>
             <Carousel>
                 <div className="slide">
-                    <img src={leftBtn} alt="leftBtn" className="leftBtn"></img>
-                    <div className="display"></div>
-                    <img src={rightBtn} alt="rightBtn" className="rightBtn"></img>
+                    <img src={leftBtn} alt="leftBtn" className="leftBtn" onClick={() => handleClick('left')}></img>
+                    <div className="display">
+                        <div className="slider" ref={slideRef}>
+                            <AdContent content = { data }/>
+                        </div>
+                    </div>
+                    <img src={rightBtn} alt="rightBtn" className="rightBtn" onClick={() => handleClick('right')}></img>
                 </div>
                 <div className="carousel-btn">
                     <div className="btn1"></div>
@@ -181,7 +237,7 @@ export const Event = () => {
                     <div className="btn4"></div>
                     <div className="btn5"></div>
                     <img src={pause}></img>
-                    <img src={play}></img>
+                    {/* <img src={play}></img> */}
                 </div>
             </Carousel>
 
