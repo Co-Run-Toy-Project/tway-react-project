@@ -2,6 +2,7 @@
   "name": "dont-touch-origin-tway-clone",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -75,6 +76,5 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Co-Run-Toy-Project/tway-react-project/issues"
-  },
-  "homepage": "https://github.com/Co-Run-Toy-Project/tway-react-project#readme"
+  }
 }
