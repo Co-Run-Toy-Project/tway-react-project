@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { AdContent } from "./AdContent";
 import { dummyData } from "../../data/Event_dummyData";
 import { createGlobalStyle } from "styled-components";
@@ -12,15 +12,12 @@ import pause from "../../assets/icon/bg_pause2.png";
 import play from "../../assets/icon/bg_play2.png";
 
 
-// export const GlobalStyle = createGlobalStyle`
-//     @font-face {
-//         font-family : 'NanumGothic';
-//         src : local('NanumGothic'),
-//         url(${NanumGothic}) format('woff');
-//         font-weight : 300;
-//         font-style : normal;
-//     }
-// `
+export const GlobalStyle = createGlobalStyle`
+
+    box-sizing : border-box;
+    margin : 0;
+    padding : 0;
+`
 
 export const EventArea = styled.div`
     width : 100vw;
@@ -42,7 +39,7 @@ export const Header = styled.div`
 
     display : flex;
     flex-direction : row;
-    justify-content : right;
+    justify-content : center;
     align-items : center;
 
     /* border : 1px solid black; */
@@ -50,6 +47,9 @@ export const Header = styled.div`
     margin-top : 50px;
 
     > .plusBtn {
+        position : relative;
+        right : -460px;
+
         margin-top : 5px;
         z-index : 1;
 
@@ -60,9 +60,10 @@ export const Header = styled.div`
     }
 
     > .title {
-        position : absolute;
-        left : 10px;
-        right : 10px;
+        /* position : absolute; */
+        /* left : 10px;
+        right : 10px; */
+        align-content: center;
         font-size : 30px;
         font-weight : bold;
     }
@@ -86,7 +87,7 @@ export const Carousel = styled.div`
 
     > .slide {
         height : 300px;
-        width : 100%;
+        width : 1500px;
         
 
         margin-top : 40px;
@@ -129,6 +130,9 @@ export const Carousel = styled.div`
                 height : 100%;
 
                 display : flex;
+                box-sizing : border-box;
+                margin : 0;
+                padding : 0;
 
                 /* border : 3px solid green; */
 
@@ -151,9 +155,24 @@ export const Carousel = styled.div`
         justify-content : center;
         
         /* border : 1px solid green; */
-        > div {
+        > .btn {
             border-radius : 50px;
             background-color : #f3f3f3;
+            width : 13px;
+            height : 13px;
+
+            margin-left : 10px;
+            transition : .3s ease;
+            
+            &:hover {
+                cursor: pointer;
+                background-color : #D22C26;
+            }
+        }
+
+        > .activeBtn {
+            border-radius : 50px;
+            background-color : #4d4d4d;
             width : 13px;
             height : 13px;
 
@@ -173,6 +192,7 @@ export const Carousel = styled.div`
             height : 12px;
 
             margin-left : 10px;
+
             
             &:hover {
                 cursor: pointer;
@@ -188,9 +208,12 @@ export const Event = () => {
     
     const [data, setData] = useState(dummyData);
     const [startX, setStartX] = useState(0);
+    const [mode, setMode] = useState('play');
+    const [focus , setFocus] = useState(1);
     
 
     const slideRef = useRef();
+
 
 
     const handleClick = (direction) => {
@@ -198,19 +221,75 @@ export const Event = () => {
 
         // console.log(slideRef.current.style.transform)
         if (direction === 'left'){
-            slideRef.current.style.transform = `translateX(${startX + 525}px)`;
-            setStartX(startX + 525);
+            if(startX !== 0){
+                slideRef.current.style.transform = `translateX(${startX + 525}px)`;
+                setStartX(startX + 525);
+                setFocus(focus-1)
+                setMode('pause')
+                clearTimeout(timer)
+            }else{
+                slideRef.current.style.transform = `translateX(0px)`;
+                setStartX(0);
+                setFocus(1);
+                setMode('pause')
+                clearTimeout(timer)
+            }
         }
         else if (direction === 'right'){
-            slideRef.current.style.transform = `translateX(${startX - 525}px)`;
-            setStartX(startX - 525);
+            if(startX !== (-(data.length -2) * 525)){
+                slideRef.current.style.transform = `translateX(${startX - 525}px)`;
+                setStartX(startX - 525);
+                setFocus(focus+1)
+                setMode('pause')
+                clearTimeout(timer)
+            }else{
+                slideRef.current.style.transform = `translateX(0px)`;
+                setStartX(0);
+                setFocus(1);
+                setMode('pause')
+                clearTimeout(timer)
+            }
         }
 
     }
 
+    const handleCarouselBtn = (key) => {
+        console.log(key);
+        if (key !== data.length){
+            slideRef.current.style.transform = `translateX(${-(key-1) * 525}px)`;
+            setStartX(-(key-1) * 525);
+            setFocus(key);
+            setMode('pause')
+            clearTimeout(timer)
+        }
 
 
+    }
 
+    const handleMode = ()=>{
+        mode === 'play'? setMode('pause') : setMode('play');
+
+    }
+  
+    
+    let timer;
+
+    useEffect(()=>{
+        if (mode === 'play'){
+            timer = setTimeout(()=>{
+                console.log('그만해')
+                if(startX !== (-(data.length -2) * 525)){
+                    slideRef.current.style.transform = `translateX(${startX - 525}px)`;
+                    setStartX(startX - 525);
+                    setFocus(focus+1);
+                }else{
+                    slideRef.current.style.transform = `translateX(0px)`;
+                    setStartX(0);
+                    setFocus(1);
+                }
+            }, 3000)
+        }
+    },[mode, startX])
 
 
 
@@ -231,13 +310,14 @@ export const Event = () => {
                     <img src={rightBtn} alt="rightBtn" className="rightBtn" onClick={() => handleClick('right')}></img>
                 </div>
                 <div className="carousel-btn">
-                    <div className="btn1"></div>
-                    <div className="btn2"></div>
-                    <div className="btn3"></div>
-                    <div className="btn4"></div>
-                    <div className="btn5"></div>
-                    <img src={pause}></img>
-                    {/* <img src={play}></img> */}
+                    {data.map((el) => {
+                        if(el.id !== data.length){
+                            return (
+                                <div className={focus === el.id ? 'activeBtn' : 'btn'} key={el.id} onClick={()=>handleCarouselBtn(el.id)}></div>
+                            )
+                        }
+                    })}
+                    {mode === 'play'? <img src={pause} onClick={handleMode}></img> : <img src={play} onClick={handleMode}></img>}
                 </div>
             </Carousel>
 

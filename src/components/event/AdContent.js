@@ -4,13 +4,18 @@ export const Content = styled.div`
     width : 520px;
     height : 300px;
 
-    margin-right : 7px;
+    /* margin-right : 7px; */
+    padding-left : 2.3px;
+    padding-right : 2.5px;
+    /* border : 3px solid blue; */
 
     /* background-color : red; */
 
     > img {
         height : 300px;
-        margin-right : 10px;
+        /* margin-right : 10px; */
+
+        /* border : 1px soild blue; */
     }
 
 `

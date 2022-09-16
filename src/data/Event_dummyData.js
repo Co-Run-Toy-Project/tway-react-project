@@ -20,4 +20,20 @@ export const dummyData = [
         id : 4,
         src : content4
     },
+    {
+        id : 5,
+        src : content1
+    },
+    {
+        id : 6,
+        src : content2
+    },
+    {
+        id : 7,
+        src : content3
+    },
+    {
+        id : 8,
+        src : content4
+    },
 ]
