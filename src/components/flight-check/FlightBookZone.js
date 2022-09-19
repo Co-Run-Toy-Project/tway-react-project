@@ -46,6 +46,7 @@ const BookOption = styled.div`
   
   letter-spacing: -0.5px;
   text-align: center;
+  cursor: pointer;
 
   .submenu {
     ${'' /* 기본 Tabmenu 에 대한 CSS를 구현합니다. */}
@@ -102,7 +103,53 @@ const RoundOrOne = () => {
 
 
 //단체 유무 클릭
+const CheckPoint = styled.div`
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
 
+  >img{
+    width: 22px;
+    height: 22px;
+    margin-right: 10px;
+  }
+  .checked{
+    overflow : visible ;
+    font-weight: bold;
+  }
+
+`
+
+const GroupCheck = () => {
+
+  const [isCheck, setIsCheck] = useState(false)
+
+  const groupChecker = () => {
+    setIsCheck(!isCheck)
+  }
+
+  return (
+      <CheckPoint onClick={groupChecker} className={isCheck ? 'checked pointer' : 'pointer'} >
+        <img src={ isCheck ? process.env.PUBLIC_URL + 'icon/ico_checkbox_group.png' : process.env.PUBLIC_URL + 'icon/ico_checkbox_ none.png'}></img>
+        <div className={isCheck ? 'checked' : ''} >단체(10명이상)</div>
+      </CheckPoint>
+  )
+} 
+
+//할인 코드 입력
+
+
+const DisCountInput = () => {
+
+  const handleChange = (e) =>{
+    const regex = /^[a-zA-Z]{0,13}$/;
+  }
+  return (
+    <Reserve>
+      <input type="text" onChange = {handleChange} value = {inputValue}></input>
+    </Reserve>
+  )
+}
 
 const BookSchedule = styled.div`
 `
@@ -116,8 +163,8 @@ function FlightBookZone() {
         <BookZoneBody>
           <BookOption>
             <RoundOrOne></RoundOrOne>
-            <div className='Round__or__one'></div>
-            <div className='Group__check'></div>
+            <GroupCheck></GroupCheck>
+            <DisCountInput></DisCountInput>
             <div className='discount__input'></div>
           </BookOption>
           <BookSchedule>
