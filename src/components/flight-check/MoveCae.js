@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 
 //캐러셀 라이브러리
+//웬만하면 그냥 코딩하자.........
+
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -33,9 +35,7 @@ const Wrapper =styled.div`
 
 const Images= styled.div`
 
-position: relative;
-margin: 0 auto;
-margin-top: 5rem;
+margin-top: 3rem;
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -51,6 +51,12 @@ const CaeButton = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between  ;
+
+    position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate( -50%, -50% );
+
 
     .playAndPause{
         width: 4.5rem;
@@ -90,7 +96,7 @@ function MoveCae(){
     return(
         <>
             <Wrapper>
-                <Slider {...settings}>
+                {/* <Slider {...settings}>
                     <div className='slide__image'>
                         <img src={process.env.PUBLIC_URL + 'images/0cc6d99a-d43c-44a2-9407-372cb7835a42.png'} ></img>
                     </div>
@@ -106,8 +112,13 @@ function MoveCae(){
                     <div className='slide__image'>
                         <img src={process.env.PUBLIC_URL + 'images/0cc6d99a-d43c-44a2-9407-372cb7835a42.png'} ></img>
                     </div>
-                </Slider>
+                </Slider> */}
             </Wrapper>
+            <Images>
+                <div className='slide__image'>
+                        <img src={process.env.PUBLIC_URL + 'images/0cc6d99a-d43c-44a2-9407-372cb7835a42.png'} ></img>
+                </div>
+            </Images>
             <CaeButton>
                 <div className='playAndPause'>
                     <img src={prevIcon} id="aro1_prev"></img>
