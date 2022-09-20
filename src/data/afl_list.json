@@ -1,0 +1,32 @@
+{
+  "afl": [
+    { "id": 1,
+     "name": "호텔",
+      "content": "icon/ico_main_aff01.png" },
+    {
+      "id": 2,
+      "name": "렌터카",
+      "content": "icon/ico_main_aff02.png"
+    },
+    {
+      "id": 3,
+      "name": "쇼핑 편의",
+      "content": "icon/ico_main_aff03.png"
+    },
+    {
+      "id": 4,
+      "name": "액티비티",
+      "content": "icon/ico_main_aff04.png"
+    },
+    {
+      "id": 5,
+      "name": "금융 여행자보험",
+      "content": "icon/ico_main_aff05.png"
+    },
+    {
+      "id": 6,
+      "name": "와이파이",
+      "content": "icon/ico_main_aff06.png"
+    }
+  ]
+}

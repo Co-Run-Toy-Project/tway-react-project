@@ -1,23 +1,57 @@
 import React from "react";
 import styled from "styled-components";
+import data from "data/afl_list.json";
 
-const StyledCircle = styled.button`
+const IconWrapper = styled.a`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+
+  grid-template-columns: repeat(6, 1fr);
+  color: #313131;
+  text-decoration: none;
+  cursor: pointer;
+`;
+
+const StyledCircle = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
   width: 110px;
   height: 110px;
-  border: 2px solid lightcoral;
+  border: none;
   border-radius: 50%;
-  color: #000000;
-  margin-left: 50px;
+  background-color: ${(props) => props.theme.white};
+
   cursor: pointer;
   :hover {
-    background: red;
+    background: ${(props) => props.theme.red};
   }
 `;
 
-function Button(props) {
-  const { title, onClick } = props;
+// Icon CSS
+const Icon = styled.img`
+  width: 72px;
+  height: 72px;
+`;
 
-  return <StyledCircle>{title}</StyledCircle>;
+function Button() {
+  return (
+    <>
+      {data.afl.map((item) => (
+        <IconWrapper>
+          <StyledCircle>
+            <Icon src={item.content} />
+          </StyledCircle>
+          <p>{item.name}</p>
+        </IconWrapper>
+      ))}
+    </>
+  );
 }
 
 export default Button;
