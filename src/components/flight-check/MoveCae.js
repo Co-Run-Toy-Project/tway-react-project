@@ -5,11 +5,6 @@ import styled from 'styled-components';
 //캐러셀 라이브러리
 //웬만하면 그냥 코딩하자.........
 
-import Slider from 'react-slick';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-
-
 
 // Images
 import adImage1 from '../../assets/images/0cc6d99a-d43c-44a2-9407-372cb7835a42.png'
