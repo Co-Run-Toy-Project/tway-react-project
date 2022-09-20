@@ -7,11 +7,15 @@ import AfflImage from "./AfflImage";
 import Carousel from "./Carousel";
 import theme from "data/theme";
 
+const AlianceTitle = styled.h1`
+  text-align: center;
+`;
+
 const Wrapper = styled.div`
   padding: 50px 0;
   width: 100%;
   background-color: #f3f3f3;
-  `;
+`;
 
 const TopWrapper = styled.div`
   display: flex;
@@ -25,25 +29,16 @@ const TopWrapper = styled.div`
 
 const BottomWrapper = styled.div`
   display: flex;
-  width: calc(100%-32px);
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  background: white;
-`;
-
-// Icon CSS
-const Icon = styled.img`
-  width: 72px;
-  height: 72px;
+  width: 1200px;
+  height: 368px;
 `;
 
 export default function AfflIcon() {
   return (
     <Wrapper>
       <ThemeProvider theme={theme}>
-        
-      <h1>제휴서비스</h1>
+        <AlianceTitle>제휴서비스</AlianceTitle>
         <TopWrapper>
           <Button />
         </TopWrapper>
