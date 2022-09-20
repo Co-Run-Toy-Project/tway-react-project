@@ -4,7 +4,8 @@ import theme from "data/theme";
 
 import './App.css';
 import { Event } from './components/event/Event';
-
+import flights from 'data/flights';
+import { Tour } from 'components/recommendation/Tour';
 
 function App() {
   return (
