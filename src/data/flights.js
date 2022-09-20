@@ -1,3 +1,4 @@
+
 import CJU from 'assets/images/0908a425-b0c7-4292-965a-44e2a081502e.jpg';
 import SIN from 'assets/images/118237ee-f460-4f9b-9dd0-1e9988079080.png';
 import UBN from 'assets/images/7ac7dc5d-3311-4409-92b9-663b23289d93.jpg';
@@ -17,7 +18,7 @@ const flights = [
     destination: '올란바타르',
     price: '172,600',
     about: '편도 총액',
-    pic: UBN,
+    pic: UBN
   },
   {
     id: 1,
@@ -26,7 +27,7 @@ const flights = [
     destination: '나리타',
     price: '102,000',
     about: '편도 총액',
-    pic: NRT,
+    pic: NRT
   },
   {
     id: 2,
@@ -35,7 +36,7 @@ const flights = [
     destination: '방콕/수완나폼',
     price: '150,460',
     about: '편도 총액',
-    pic: BKK,
+    pic: BKK
   },
   {
     id: 3,
@@ -44,8 +45,7 @@ const flights = [
     destination: '다낭',
     price: '123,600',
     about: '편도 총액',
-    pic: DAD,
-
+    pic: DAD
   },
   {
     id: 4,
@@ -54,8 +54,7 @@ const flights = [
     destination: '제주',
     price: '27,100',
     about: '편도 총액',
-    pic: CJU,
-
+    pic: CJU
   },
   {
     id: 5,
@@ -64,8 +63,7 @@ const flights = [
     destination: '싱가포르',
     price: '154,000',
     about: '편도 총액',
-    pic: SIN,
-
+    pic: SIN
   },
   {
     id: 6,
@@ -74,8 +72,7 @@ const flights = [
     destination: '다낭',
     price: '128,600',
     about: '편도 총액',
-    pic: DAD,
-
+    pic: DAD
   },
   {
     id: 7,
@@ -84,8 +81,7 @@ const flights = [
     destination: '괌',
     price: '149,350',
     about: '편도 총액',
-    pic: GUM,
-
+    pic: GUM
   },
   {
     id: 8,
@@ -94,7 +90,7 @@ const flights = [
     destination: '후쿠오카',
     price: '78,300',
     about: '편도 총액',
-    pic: FUK,
+    pic: FUK
   },
   {
     id: 9,
@@ -103,8 +99,7 @@ const flights = [
     destination: '부산',
     price: '29,500',
     about: '편도 총액',
-    pic: PUS,
-
+    pic: PUS
   },
   {
     id: 10,
@@ -113,8 +108,8 @@ const flights = [
     destination: '제주',
     price: '30,500',
     about: '편도 총액',
-    pic: CJU,
-  },
+    pic: CJU
+    },
   {
     id: 11,
     date: '09.20',
@@ -122,7 +117,7 @@ const flights = [
     destination: '제주',
     price: '32,500',
     about: '편도 총액',
-    pic: CJU,
+    pic: CJU
   },
   {
     id: 12,
@@ -131,7 +126,7 @@ const flights = [
     destination: '양양',
     price: '73,500',
     about: '편도 총액',
-    pic: YNY,
+    pic: YNY
   }
 ]
 

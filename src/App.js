@@ -12,7 +12,6 @@ function App() {
     <>
       <ThemeProvider theme = {theme}>
         <Event/>
-        <Tour flights={flights}/>
       </ThemeProvider>
     </>
   );
