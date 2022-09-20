@@ -18,15 +18,17 @@ position: relative;
 
     .video__zone{
         position: relative;
+        
     }
     .video{
         width: 100%;
         z-index: -1;
+        /* background-color: aliceblue; */
     }
 `
 
 
-{}
+
 
 
 function Reservation() {

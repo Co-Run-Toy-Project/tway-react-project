@@ -1,26 +1,38 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import locationIcon from '../../assets/icon/ico_btn_pin.png'
 
 const BookZone = styled.div`
 width: 1200px;
-height: 13rem;
+height: 213px;
 background-color:white;
 border-radius: 18px;
 margin: auto;
-margin-top: 4rem;
+margin-top: 3.5rem;
 `
 const BookZoneHeader = styled.div`
+
 height: 32px;
 background-color: brown;
 border-radius: 18px 18px 0 0;
+
+
 `
 const BookZoneBody = styled.div`
 background-color: white;
-height: 11rem;
+max-height: 183px;
 border-radius: 0 0 18px 18px;
+padding: 30px 40px;
 `
 const BookOption = styled.div`
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 1140px;
+  height: 36px;
+  
 `
 
 
@@ -33,15 +45,15 @@ const BookOption = styled.div`
 
   width: 206px;
   height: 32px;
-  background-color: rgba(73, 73, 73, 0.1);
-  color: rgba(73, 73, 73, 0.5);
+  background-color: #F2F6F9;
+  color: #4D4D4D;
 
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 
   border-radius: 25px;
-  margin-right: 0;
+  margin-right: 52px;
   padding-left: 0;
   
   letter-spacing: -0.5px;
@@ -107,7 +119,7 @@ const CheckPoint = styled.div`
   display: flex;
   flex-direction: row;
   cursor: pointer;
-
+  width: 240px;
   >img{
     width: 22px;
     height: 22px;
@@ -136,23 +148,137 @@ const GroupCheck = () => {
   )
 } 
 
+
+
 //할인 코드 입력
+
+const SaleCodeBox =  styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 250px;
+  height: 36px;
+  background-color: #F2F6F9;
+  justify-content: space-evenly;
+  border-radius: 25px;
+  align-items: center;
+
+  >input {
+    border: 0px;
+    background-color: transparent;
+  }
+
+  `
+
+
+const IntroBox =  styled.div`
+.arrow_box {
+  display: none;
+  position: absolute;
+  width: 450px;
+  padding: 8px;
+  left: 0;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  border-color: #4D4D4D;
+  background: gray;
+  color: #4D4D4D;
+  font-size: 14px;
+}
+
+.arrow_box:after {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin-left: -10px;
+  border: solid transparent;
+  border-color: rgba(51, 51, 51, 0);
+  border-bottom-color: gray;
+  border-width: 10px;
+  pointer-events: none;
+  content: ' ';
+}
+
+img:hover + div.arrow_box {
+  display: block;
+}
+`
 
 
 const DisCountInput = () => {
 
+  const [inputValue, setInputValue] = useState('')
+
   const handleChange = (e) =>{
-    const regex = /^[a-zA-Z]{0,13}$/;
+    const regex = /^[a-zA-Z0-9]{0,20}$/
+    if(regex.test(e.target.value)){
+      setInputValue((e.target.value).toUpperCase())
+    }
   }
   return (
-    <Reserve>
-      <input type="text" onChange = {handleChange} value = {inputValue}></input>
-    </Reserve>
+    <SaleCodeBox>
+      <input type="text" onChange = { handleChange } value = {inputValue} placeholder="할인코드 입력"></input>
+      <IntroBox>
+          <img src = {process.env.PUBLIC_URL + 'icon/ico_tooltip_gray.png'}></img>
+          <div className='arrow_box'>말풍선 테스트</div>
+      </IntroBox>
+    </SaleCodeBox>
   )
 }
 
 const BookSchedule = styled.div`
+
+
 `
+const Pointers = styled.div`
+  display: flex;
+  flex-direction: row;
+`
+
+const PointSelector = styled.div`
+  max-width: 240px;
+  max-height: 60px;
+  margin-top: 25px;
+  margin-right:  10px;
+  background-color: #F2F6F9;
+  
+
+  >input{ 
+    border: 0px;
+    background-color: transparent;
+    padding-left: 20px;
+    width: 220px;
+    height: 60px;
+    background-image: url('../../assets/icon/ico_btn_pin.png');
+    background-repeat: no-repeat;
+    /* background-size: 22px; */
+  }
+
+  /* >img{
+    z-index: 2;
+  } */
+`
+
+//출발지 고르기
+const StartPoint = () => {
+
+  return (
+    <Pointers>
+      <PointSelector>
+      <input type="text" placeholder="출발지"></input>
+      {/* <img src={process.env.PUBLIC_URL + 'icon/ico_btn_pin.png'}></img> */}
+      </PointSelector>
+      <PointSelector>
+      <input type="text" placeholder="도착지"></input>
+      {/* <img src={process.env.PUBLIC_URL + 'icon/ico_btn_pin.png'}></img> */}
+      </PointSelector>
+    </Pointers>
+
+  )
+}
+
 
 function FlightBookZone() {
   return (
@@ -165,9 +291,9 @@ function FlightBookZone() {
             <RoundOrOne></RoundOrOne>
             <GroupCheck></GroupCheck>
             <DisCountInput></DisCountInput>
-            <div className='discount__input'></div>
           </BookOption>
           <BookSchedule>
+            <StartPoint></StartPoint>
             <div className='start__point'></div>
             <div className='finish__point'></div>
             <div className='schedule'></div>
