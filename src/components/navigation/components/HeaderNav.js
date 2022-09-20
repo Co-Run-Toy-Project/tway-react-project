@@ -117,7 +117,7 @@ const Side = styled.div`
     }
 `
 
-function HeaderNav() {
+export function HeaderNav() {
 
 
     const [currentTab, setCurrentTab] = useState(0)
@@ -195,4 +195,3 @@ function HeaderNav() {
     );
 }
 
-export default HeaderNav;
